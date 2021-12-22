@@ -3,6 +3,7 @@ version: '3.7'
 services:
   kratos-migrate:
     image: oryd/kratos:v0.8.0-alpha.3-sqlite
+    container_name: kratos-migrate
     environment:
       - DSN=sqlite:///var/lib/sqlite/db.sqlite?_fk=true&mode=rwc
     volumes:
@@ -31,6 +32,7 @@ services:
     depends_on:
       - kratos-migrate
     image: oryd/kratos:v0.8.0-alpha.3-sqlite
+    container_name: kratos
     ports:
       - '4433:4433' # public
       - '4434:4434' # admin
@@ -52,6 +54,7 @@ services:
 
   mailslurper:
     image: oryd/mailslurper:latest-smtps
+    container_name: mailslurper
     ports:
       - '4436:4436'
       - '4437:4437'
